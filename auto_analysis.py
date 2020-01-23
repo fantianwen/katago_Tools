@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
-from subprocess import Popen, PIPE
+import io
+from subprocess import Popen, PIPE, STDOUT
 import time
 import datetime
 from gtp import parse_vertex, gtp_move, gtp_color
@@ -10,20 +11,20 @@ class GTPSubProcess(object):
 
     def __init__(self, label, args):
         self.label = label
-        self.subprocess = Popen(args, stdin=PIPE, stdout=PIPE)
+        self.subprocess = Popen(args, stdout = PIPE, stdin = PIPE)
         
     
-
     def send(self, data):
         print("sending {}: {}".format(self.label, data))
-        self.subprocess.stdin.write(data)
+        
+        self.subprocess.stdin.write(str.encode(data))
+        self.subprocess.stdin.flush()
         result = ""
-        while True:
-            data = self.subprocess.stdout.readline()
-            print("=====the data is {}======".format(data))
-            if not data.strip():
-                break
-            result += data
+        
+        for line in io.TextIOWrapper(self.subprocess.stdout, encoding="utf-8"):  # or another encoding
+            print(line)
+            result += line
+
         print("got: {}".format(result))
         return result
 
