@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import os
 from subprocess import Popen, PIPE
 import time
 import datetime
@@ -151,7 +151,7 @@ class GTPFacade(object):
     def waitUntilEnd(self):
         self.gtp_subprocess.waitUntilEnd()
 
-    def sendstr(self,str_):
+    def sendstr(self, str_):
         ana = self.gtp_subprocess.send(str_+"\n")
         return ana.strip()
 
@@ -166,8 +166,19 @@ enginne = GTPFacade("kata", KataGo)
 
 time.sleep(8)
 
-while (True):
-    print(enginne.sendstr(teststr))
-    
-    break
+RootPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/dec_ana'
+files = os.listdir(RootPath)
+s = []
+
+
+def saveAnaToFile(anaText, fileName):
+    fileObject = open(fileName, 'w')
+    fileObject.write(str(anaText))
+    fileObject.close()
+
+for file in files:
+     if not os.path.isdir(file):
+            fileForAna = RootPath + "/" + file
+            ana_text = open(RootPath + "/" + file).read()
+            saveAnaToFile(enginne.sendstr(ana_text), os.path.basename(fileForAna)+".anaend")
 
