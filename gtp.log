@@ -1,0 +1,150 @@
+2020-01-21 17:06:50+0900: Analysis Engine starting...
+2020-01-21 17:06:50+0900: KataGo v1.3.1
+2020-01-21 17:06:50+0900: nnRandSeed0 = 16465054086453753334
+2020-01-21 17:06:50+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-21 17:06:56+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-21 17:06:56+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-21 17:06:56+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-21 17:06:56+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-21 17:06:56+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-21 17:06:56+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-21 17:06:56+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-21 17:06:56+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-21 17:06:56+0900: OpenCL backend: Model version 8
+2020-01-21 17:06:56+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-21 17:06:56+0900: Started, ready to begin handling requests
+2020-01-23 16:54:51+0900: Analysis Engine starting...
+2020-01-23 16:54:51+0900: KataGo v1.3.1
+2020-01-23 16:54:51+0900: nnRandSeed0 = 15049803919659491524
+2020-01-23 16:54:51+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 16:54:57+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 16:54:57+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 16:54:57+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 16:54:57+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 16:54:57+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 16:54:57+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 16:54:57+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 16:54:57+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 16:54:57+0900: OpenCL backend: Model version 8
+2020-01-23 16:54:57+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 16:54:57+0900: Started, ready to begin handling requests
+2020-01-23 16:55:27+0900: Analysis Engine starting...
+2020-01-23 16:55:27+0900: KataGo v1.3.1
+2020-01-23 16:55:27+0900: nnRandSeed0 = 4847006378066777868
+2020-01-23 16:55:27+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 16:55:32+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 16:55:32+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 16:55:32+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 16:55:32+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 16:55:32+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 16:55:32+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 16:55:32+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 16:55:33+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 16:55:33+0900: OpenCL backend: Model version 8
+2020-01-23 16:55:33+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 16:55:33+0900: Started, ready to begin handling requests
+2020-01-23 17:14:14+0900: Analysis Engine starting...
+2020-01-23 17:14:14+0900: KataGo v1.3.1
+2020-01-23 17:14:14+0900: nnRandSeed0 = 2003422044695688556
+2020-01-23 17:14:14+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 17:14:20+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 17:14:20+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 17:14:20+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 17:14:20+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 17:14:20+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 17:14:20+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 17:14:20+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 17:14:20+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 17:14:20+0900: OpenCL backend: Model version 8
+2020-01-23 17:14:20+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 17:14:20+0900: Started, ready to begin handling requests
+2020-01-23 19:50:59+0900: Analysis Engine starting...
+2020-01-23 19:50:59+0900: KataGo v1.3.1
+2020-01-23 19:50:59+0900: nnRandSeed0 = 7692685801348157026
+2020-01-23 19:50:59+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 19:51:05+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 19:51:05+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 19:51:05+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 19:51:05+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 19:51:05+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 19:51:05+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 19:51:05+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 19:51:05+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 19:51:05+0900: OpenCL backend: Model version 8
+2020-01-23 19:51:05+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 19:51:05+0900: Started, ready to begin handling requests
+2020-01-23 19:52:08+0900: Analysis Engine starting...
+2020-01-23 19:52:08+0900: KataGo v1.3.1
+2020-01-23 19:52:08+0900: nnRandSeed0 = 13264571159475753892
+2020-01-23 19:52:08+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 19:52:14+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 19:52:14+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 19:52:14+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 19:52:14+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 19:52:14+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 19:52:14+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 19:52:14+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 19:52:14+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 19:52:14+0900: OpenCL backend: Model version 8
+2020-01-23 19:52:14+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 19:52:14+0900: Started, ready to begin handling requests
+2020-01-23 20:03:53+0900: Analysis Engine starting...
+2020-01-23 20:03:53+0900: KataGo v1.3.1
+2020-01-23 20:03:53+0900: nnRandSeed0 = 7225853183217796776
+2020-01-23 20:03:53+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 20:03:59+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 20:03:59+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 20:03:59+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 20:03:59+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 20:03:59+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 20:03:59+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 20:03:59+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 20:03:59+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 20:03:59+0900: OpenCL backend: Model version 8
+2020-01-23 20:03:59+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 20:03:59+0900: Started, ready to begin handling requests
+2020-01-23 20:05:14+0900: Analysis Engine starting...
+2020-01-23 20:05:14+0900: KataGo v1.3.1
+2020-01-23 20:05:14+0900: nnRandSeed0 = 7742413086549347330
+2020-01-23 20:05:14+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 20:05:20+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 20:05:20+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 20:05:20+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 20:05:20+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 20:05:20+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 20:05:20+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 20:05:20+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 20:05:20+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 20:05:20+0900: OpenCL backend: Model version 8
+2020-01-23 20:05:20+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 20:05:20+0900: Started, ready to begin handling requests
+2020-01-23 20:28:13+0900: Analysis Engine starting...
+2020-01-23 20:28:13+0900: KataGo v1.3.1
+2020-01-23 20:28:13+0900: nnRandSeed0 = 17902338041480775419
+2020-01-23 20:28:13+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 20:28:19+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 20:28:19+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 20:28:19+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 20:28:19+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 20:28:19+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 20:28:19+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 20:28:19+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 20:28:19+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 20:28:19+0900: OpenCL backend: Model version 8
+2020-01-23 20:28:19+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 20:28:19+0900: Started, ready to begin handling requests
+2020-01-23 21:15:57+0900: Analysis Engine starting...
+2020-01-23 21:15:57+0900: KataGo v1.3.1
+2020-01-23 21:15:57+0900: nnRandSeed0 = 18068936914334003429
+2020-01-23 21:15:57+0900: After dedups: nnModelFile0 = /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz useFP16 false useNHWC false
+2020-01-23 21:16:03+0900: Found OpenCL Platform 0: NVIDIA CUDA (NVIDIA Corporation) (OpenCL 1.2 CUDA 9.1.84)
+2020-01-23 21:16:03+0900: Found 3 device(s) on platform 0 with type GPU or Accelerator
+2020-01-23 21:16:03+0900: Found OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 21:16:03+0900: Found OpenCL Device 1: GeForce GT 720 (NVIDIA Corporation)
+2020-01-23 21:16:03+0900: Found OpenCL Device 2: GeForce GTX TITAN X (NVIDIA Corporation)
+2020-01-23 21:16:03+0900: Using OpenCL Device 0: GeForce GTX TITAN X (NVIDIA Corporation) OpenCL 1.2 CUDA
+2020-01-23 21:16:03+0900: Loaded tuning parameters from: /home/ikeda-05444/.katago/opencltuning/tune_gpuGeForceGTXTITANX_x19_y19_c256_mv8.txt
+2020-01-23 21:16:03+0900: Loaded model /home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz
+2020-01-23 21:16:03+0900: OpenCL backend: Model version 8
+2020-01-23 21:16:03+0900: Analyzing up to 16 positions at at time in parallel
+2020-01-23 21:16:03+0900: Started, ready to begin handling requests
