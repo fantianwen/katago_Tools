@@ -106,7 +106,7 @@ def parseForAnalysis(filePath):
 
         f.close()
 
-        saveToFile(json_tuple, os.path.basename(filePath)+".ana")
+        saveToFile(json.dumps(json_tuple), os.path.basename(filePath)+".ana")
         print(json.dumps(json_tuple))
 
 
