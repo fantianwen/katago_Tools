@@ -100,7 +100,7 @@ def parseForAnalysis(filePath):
 
         json_tuple['boardYSize'] = 13
 
-        json_tuple['maxVisits'] = 16000
+        json_tuple['maxVisits'] = 1000
 
         json_tuple['analyzeTurns'] = analysisTurns
 
