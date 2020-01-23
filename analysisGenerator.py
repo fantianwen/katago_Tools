@@ -3,46 +3,55 @@
 import sgf
 import matplotlib.pyplot as pyplot
 import os
+import json
 
-locationdic = "abcdefghjklmn"
-
+locationdic = "abcdefghijklmn"
 
 def transferMoveLocation(location):
     x = location[:1]
-    y = location[1:2]
-    new_y = int(locationdic.find(y)) + 1
-    return x + str(new_y)
+    new_x = x
+    x_index = int(locationdic.find(x))
+    if x_index >= 8:
+        new_x = locationdic[x_index+1]
 
+    y = location[1:2]
+    y_index = int(locationdic.find(y))
+    new_y = 13 - y_index
+    return new_x + str(new_y)
 
 def getInitialMoves(moves, handicapStoneNumber):
-    initialMovesStr = ''
+    initialMovesStr = []
 
     if handicapStoneNumber == 0:
         return initialMovesStr
 
-    initialMovesStr += '['
     for i in range(handicapStoneNumber):
-        initialMovesStr += '["B","' + transferMoveLocation(moves[i]) + '"],'
-    initialMovesStr = initialMovesStr[0:len(initialMovesStr) - 1]
-    initialMovesStr += ']'
+        moveBlock = []
+        moveBlock.append("B")
+        moveBlock.append(transferMoveLocation(moves[i]))
+        initialMovesStr.append(moveBlock)
+
     return initialMovesStr
 
 
 def getMoves(moves, handicapStoneNumber):
-    movesStr = ''
-    movesStr += '['
+    movesStr = []
     for i in range(handicapStoneNumber, len(moves)):
+        moveBlock = []
         if i%2 == 0:
-            movesStr += '["W","' + transferMoveLocation(moves[i]) + '"],'
+            moveBlock.append("W")
         else:
-            movesStr += '["B","' + transferMoveLocation(moves[i]) + '"],'
-    movesStr = movesStr[0:len(movesStr) - 1]
-    movesStr += ']'
+            moveBlock.append("B")
+        moveBlock.append(transferMoveLocation(moves[i]))
+        movesStr.append(moveBlock)
     return movesStr
 
+def saveToFile(json_tuple, fileName):
+    fileObject = open(fileName, 'w')
+    fileObject.write(str(json_tuple))
+    fileObject.close()
 
-def parseWinrate(filePath):
-    winrates = []
+def parseForAnalysis(filePath):
     moves = []
     komi = ''
     with open(filePath) as f:
@@ -50,17 +59,21 @@ def parseWinrate(filePath):
         children = collection.children
         gameTree = children[0]
 
+        analysisTurns = []
+        json_tuple = {}
+
         handicapStones = 1
 
         for node in gameTree.nodes:
             for property in node.properties:
 
                 if property == 'KM':
-                    komi = node.properties[property]
+                    komis = node.properties[property]
+                    komi = komis[0]
 
                 if property == 'B' or property == 'W':
                     move = node.properties[property]
-                    print(move[0])
+                    # print(move[0])
                     if move[0] != 'tt':
                         moves.append(move[0])
                     else:
@@ -70,26 +83,39 @@ def parseWinrate(filePath):
                     comments = node.properties[property]
                     _comments = ''.join(comments)
                     if _comments.strip() != '':
-                        json_tuple = {}
-                        json_tuple['id'] = 'test'
+                        analysisTurns.append(len(moves)-handicapStones-1)
+                        analysisTurns.append(len(moves)-handicapStones)
 
-                        json_tuple['initailStones'] = getInitialMoves(moves, handicapStones)
+        json_tuple["id"] = os.path.basename(filePath)
 
-                        json_tuple['moves'] = getMoves(moves, handicapStones)
+        json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
 
-                        json_tuple['rules'] = 'tromp-taylor'
+        json_tuple['moves'] = getMoves(moves, handicapStones)
 
-                        json_tuple['komi'] = komi
+        json_tuple['rules'] = 'tromp-taylor'
 
-                        json_tuple['boardXSize'] = 13
+        json_tuple['komi'] = float(komi)
 
-                        json_tuple['boardYSize'] = 13
+        json_tuple['boardXSize'] = 13
 
-                        json_tuple['analyzeTurns'] = len(moves)-handicapStones
+        json_tuple['boardYSize'] = 13
 
-                        print(json_tuple)
+        json_tuple['maxVisits'] = 16000
+
+        json_tuple['analyzeTurns'] = analysisTurns
 
         f.close()
 
+        saveToFile(json_tuple, os.path.basename(filePath)+".ana")
+        print(json.dumps(json_tuple))
 
-parseWinrate("/home/radasm/GoProjects/Go_data/detection/Kat01_cho_0323_1.sgf")
+
+RootPath = '/home/radasm/GoProjects/Go_data/detection'
+
+files= os.listdir(RootPath)
+s = []
+for file in files:
+     if not os.path.isdir(file):
+          parseForAnalysis(RootPath + "/" + file)
+
+
