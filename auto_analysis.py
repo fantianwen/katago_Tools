@@ -151,7 +151,7 @@ class GTPFacade(object):
         self.gtp_subprocess.waitUntilEnd()
 
     def sendstr(self, str_):
-        ana = self.gtp_subprocess.send(str_ + "\n")
+        ana = self.gtp_subprocess.send1(str_ + "\n")
         return ana.strip()
 
 
