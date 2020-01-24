@@ -7,17 +7,19 @@ import json
 
 locationdic = "abcdefghijklmn"
 
+
 def transferMoveLocation(location):
     x = location[:1]
     new_x = x
     x_index = int(locationdic.find(x))
     if x_index >= 8:
-        new_x = locationdic[x_index+1]
+        new_x = locationdic[x_index + 1]
 
     y = location[1:2]
     y_index = int(locationdic.find(y))
     new_y = 13 - y_index
     return new_x + str(new_y)
+
 
 def getInitialMoves(moves, handicapStoneNumber):
     initialMovesStr = []
@@ -38,7 +40,7 @@ def getMoves(moves, handicapStoneNumber):
     movesStr = []
     for i in range(handicapStoneNumber, len(moves)):
         moveBlock = []
-        if i%2 == 0:
+        if i % 2 == 0:
             moveBlock.append("W")
         else:
             moveBlock.append("B")
@@ -46,10 +48,15 @@ def getMoves(moves, handicapStoneNumber):
         movesStr.append(moveBlock)
     return movesStr
 
-def saveToFile(json_tuple, fileName):
-    fileObject = open(fileName, 'w')
+
+def saveToFile(json_tuple, fileName, turnNumber):
+    fileFolderName = fileName[:-4]
+    if not os.path.exists(fileFolderName):
+        os.mkdir(fileFolderName)
+    fileObject = open(fileFolderName + "/" + fileFolderName + "_" + str(turnNumber) + ".ana", 'w')
     fileObject.write(str(json_tuple))
     fileObject.close()
+
 
 def parseForAnalysis(filePath):
     moves = []
@@ -83,39 +90,57 @@ def parseForAnalysis(filePath):
                     comments = node.properties[property]
                     _comments = ''.join(comments)
                     if _comments.strip() != '':
-                        analysisTurns.append(len(moves)-handicapStones-1)
-                        analysisTurns.append(len(moves)-handicapStones)
+                        analysisTurns.clear()
 
-        json_tuple["id"] = os.path.basename(filePath)
+                        analysisTurns.append(len(moves) - handicapStones - 1)
 
-        json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
+                        json_tuple["id"] = os.path.basename(filePath)
 
-        json_tuple['moves'] = getMoves(moves, handicapStones)
+                        json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
 
-        json_tuple['rules'] = 'tromp-taylor'
+                        json_tuple['moves'] = getMoves(moves, handicapStones)
 
-        json_tuple['komi'] = float(komi)
+                        json_tuple['rules'] = 'tromp-taylor'
 
-        json_tuple['boardXSize'] = 13
+                        json_tuple['komi'] = float(komi)
 
-        json_tuple['boardYSize'] = 13
+                        json_tuple['boardXSize'] = 13
 
-        json_tuple['maxVisits'] = 1000
+                        json_tuple['boardYSize'] = 13
 
-        json_tuple['analyzeTurns'] = analysisTurns
+                        json_tuple['maxVisits'] = 1000
+
+                        json_tuple['analyzeTurns'] = analysisTurns
+                        saveToFile(json.dumps(json_tuple), os.path.basename(filePath),len(moves) - handicapStones - 1)
+
+                        analysisTurns.clear()
+                        analysisTurns.append(len(moves) - handicapStones)
+
+                        json_tuple["id"] = os.path.basename(filePath)
+
+                        json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
+
+                        json_tuple['moves'] = getMoves(moves, handicapStones)
+
+                        json_tuple['rules'] = 'tromp-taylor'
+
+                        json_tuple['komi'] = float(komi)
+
+                        json_tuple['boardXSize'] = 13
+
+                        json_tuple['boardYSize'] = 13
+
+                        json_tuple['maxVisits'] = 1000
+
+                        json_tuple['analyzeTurns'] = analysisTurns
+                        saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones)
 
         f.close()
 
-        saveToFile(json.dumps(json_tuple), os.path.basename(filePath)+".ana")
-        print(json.dumps(json_tuple))
-
-
 RootPath = '/home/radasm/GoProjects/Go_data/detection'
 
-files= os.listdir(RootPath)
+files = os.listdir(RootPath)
 s = []
 for file in files:
-     if not os.path.isdir(file):
-          parseForAnalysis(RootPath + "/" + file)
-
-
+    if not os.path.isdir(file):
+        parseForAnalysis(RootPath + "/" + file)

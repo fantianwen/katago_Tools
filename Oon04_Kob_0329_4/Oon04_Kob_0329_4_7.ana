@@ -1,0 +1,1 @@
+{"id": "Oon04_Kob_0329_4.sgf", "initialStones": [["B", "k10"], ["B", "l4"]], "moves": [["W", "j4"], ["B", "k6"], ["W", "l3"], ["B", "m3"], ["W", "k3"], ["B", "m5"], ["W", "d10"], ["B", "d3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 1000, "analyzeTurns": [7]}

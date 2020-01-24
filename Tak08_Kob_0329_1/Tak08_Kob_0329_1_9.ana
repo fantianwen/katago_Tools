@@ -1,0 +1,1 @@
+{"id": "Tak08_Kob_0329_1.sgf", "initialStones": [["B", "k3"], ["B", "l5"], ["B", "d10"]], "moves": [["B", "k10"], ["W", "d4"], ["B", "f11"], ["W", "c8"], ["B", "d12"], ["W", "c11"], ["B", "k2"], ["W", "j3"], ["B", "j2"], ["W", "h3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 1000, "analyzeTurns": [9]}
