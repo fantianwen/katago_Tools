@@ -107,7 +107,7 @@ def parseForAnalysis(filePath):
 
                         json_tuple['boardYSize'] = 13
 
-                        json_tuple['maxVisits'] = 1000
+                        json_tuple['maxVisits'] = 20000
 
                         json_tuple['analyzeTurns'] = analysisTurns
                         saveToFile(json.dumps(json_tuple), os.path.basename(filePath),len(moves) - handicapStones - 1)
@@ -129,7 +129,7 @@ def parseForAnalysis(filePath):
 
                         json_tuple['boardYSize'] = 13
 
-                        json_tuple['maxVisits'] = 1000
+                        json_tuple['maxVisits'] = 20000
 
                         json_tuple['analyzeTurns'] = analysisTurns
                         saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones)
