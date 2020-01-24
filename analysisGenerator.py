@@ -50,9 +50,10 @@ def getMoves(moves, handicapStoneNumber):
 
 def saveToFile(json_tuple, fileName, turnNumber):
     fileFolderName = fileName[:-4]
-    if not os.path.exists(fileFolderName):
-        os.mkdir(fileFolderName)
-    fileObject = open("/home/radasm/GoProjects/katago_Tools/dec_ana" + "/" + fileFolderName + "_" + str(turnNumber) + ".ana", 'w')
+    _rootfile = '/home/radasm/GoProjects/katago_Tools/dec_ana/'+fileFolderName
+    if not os.path.exists(_rootfile):
+        os.mkdir(_rootfile)
+    fileObject = open(_rootfile + "/"+fileFolderName + "_" + str(turnNumber) + ".ana", 'w')
     fileObject.write(str(json_tuple))
     fileObject.close()
 
