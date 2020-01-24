@@ -48,15 +48,13 @@ def getMoves(moves, handicapStoneNumber):
         movesStr.append(moveBlock)
     return movesStr
 
-
 def saveToFile(json_tuple, fileName, turnNumber):
     fileFolderName = fileName[:-4]
     if not os.path.exists(fileFolderName):
         os.mkdir(fileFolderName)
-    fileObject = open(fileFolderName + "/" + fileFolderName + "_" + str(turnNumber) + ".ana", 'w')
+    fileObject = open("/home/radasm/GoProjects/katago_Tools/dec_ana" + "/" + fileFolderName + "_" + str(turnNumber) + ".ana", 'w')
     fileObject.write(str(json_tuple))
     fileObject.close()
-
 
 def parseForAnalysis(filePath):
     moves = []
