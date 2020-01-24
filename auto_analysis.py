@@ -17,13 +17,20 @@ class GTPSubProcess(object):
     def send(self, data):
         print("sending {}: {}".format(self.label, data))
 
-        self.subprocess.stdin.write(str.encode(data))
-        self.subprocess.stdin.flush()
+        self.subprocess.stdin.write(data)
         result = ""
+        while True:
+            data = self.subprocess.stdout.readline()
+            result += data
+            break
 
+        print("got: {}".format(result))
+        return result
+        
         for line in io.TextIOWrapper(self.subprocess.stdout, encoding="utf-8"):  # or another encoding
             print(line)
             result += line
+            break
 
         print("got: {}".format(result))
         return result
@@ -151,7 +158,7 @@ class GTPFacade(object):
         self.gtp_subprocess.waitUntilEnd()
 
     def sendstr(self, str_):
-        ana = self.gtp_subprocess.send1(str_ + "\n")
+        ana = self.gtp_subprocess.send(str_ + "\n")
         return ana.strip()
 
 
@@ -169,25 +176,27 @@ enginne = GTPFacade("kata", KataGo)
 time.sleep(8)
 
 RootPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/dec_ana'
-RootAnaReportPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/dec_ana/ana_report'
-
-files = os.listdir(RootPath)
-s = []
+RootAnaReportPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/ana_report'
 
 
 def saveAnaToFile(anaText, rootName, fileName):
-    forsave = rootName + '/' + fileName
+    forsave = rootName + '/' + fileName + '.report'
+
     fileObject = open(forsave, 'w')
     fileObject.write(str(anaText))
     fileObject.close()
 
-for path, dir_list, file_list in files:
-    analysedText = '['
-    for file in dir_list:
-        if not os.path.isdir(file):
-            # moveNumber
-            ana_text = open(file).read()
-            analysedText += enginne.sendstr(ana_text)+','
+for path, dir_list, file_list in os.walk(RootPath):
+    print(dir_list)
+    for dir in dir_list:
+        analysedText = '['
+        for file in [f for f in os.listdir(RootPath+"/"+str(dir)) if os.path.isfile(os.path.join(RootPath+"/"+str(dir), f))]:
+            if not os.path.isdir(file):
+                # moveNumber
+                ana_text = open(RootPath+"/"+str(dir)+"/"+file).read()
+                analysedText += enginne.sendstr(ana_text)
+                analysedText += ","
+                print(analysedText)
         analysedText = analysedText[:len(analysedText)-1]
         analysedText += ']'
-        saveAnaToFile(analysedText, RootAnaReportPath, dir_list)
+        saveAnaToFile(analysedText, RootAnaReportPath, str(dir))
