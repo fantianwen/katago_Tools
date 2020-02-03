@@ -1,0 +1,1 @@
+{"id": "Sat10_cho_0302_4.sgf", "initialStones": [["B", "l3"], ["B", "c3"], ["B", "k11"], ["B", "l9"]], "moves": [["W", "g4"], ["B", "d11"], ["W", "c4"], ["B", "d3"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [3]}

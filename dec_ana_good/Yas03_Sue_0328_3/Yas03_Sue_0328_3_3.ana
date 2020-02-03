@@ -1,0 +1,1 @@
+{"id": "Yas03_Sue_0328_3.sgf", "initialStones": [["B", "k10"], ["B", "d4"]], "moves": [["W", "d10"], ["B", "k3"], ["W", "k5"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [2]}

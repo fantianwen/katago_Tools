@@ -1,0 +1,1 @@
+{"id": "Sat02_Ike_0229_2.sgf", "initialStones": [["B", "k3"], ["B", "l5"], ["B", "d11"], ["B", "c9"]], "moves": [["W", "d8"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [0]}

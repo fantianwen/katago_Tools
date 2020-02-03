@@ -1,0 +1,1 @@
+{"id": "Tak15_Sue_0329_8.sgf", "initialStones": [["B", "k10"], ["B", "d4"]], "moves": [["W", "d10"], ["B", "k4"], ["W", "h11"], ["B", "l8"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [3]}
