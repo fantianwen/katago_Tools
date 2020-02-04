@@ -1,1 +1,1 @@
-{"id": "Tak18_Kob_0329_11.sgf", "initialStones": [["B", "g4"], ["B", "g10"]], "moves": [["W", "e11"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [0]}
+{"id": "Tak18_Kob_0329_11.sgf", "initialStones": [["B", "g4"], ["B", "g10"]], "moves": [["W", "e11"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [0]}

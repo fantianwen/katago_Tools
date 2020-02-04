@@ -1,1 +1,1 @@
-{"id": "Oon16_cho_0329_16.sgf", "initialStones": [["B", "k11"], ["B", "k3"]], "moves": [["W", "k9"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [0]}
+{"id": "Oon16_cho_0329_16.sgf", "initialStones": [["B", "k11"], ["B", "k3"]], "moves": [["W", "k9"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [0]}

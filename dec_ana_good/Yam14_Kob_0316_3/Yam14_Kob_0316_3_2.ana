@@ -1,1 +1,1 @@
-{"id": "Yam14_Kob_0316_3.sgf", "initialStones": [["B", "k10"], ["B", "k3"], ["B", "c10"], ["B", "l5"]], "moves": [["W", "e10"], ["B", "d8"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [1]}
+{"id": "Yam14_Kob_0316_3.sgf", "initialStones": [["B", "k10"], ["B", "k3"], ["B", "c10"], ["B", "l5"]], "moves": [["W", "e10"], ["B", "d8"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [1]}

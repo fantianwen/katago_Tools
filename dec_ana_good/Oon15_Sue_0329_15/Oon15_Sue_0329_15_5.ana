@@ -1,1 +1,1 @@
-{"id": "Oon15_Sue_0329_15.sgf", "initialStones": [["B", "k10"], ["B", "c10"]], "moves": [["W", "e10"], ["B", "e11"], ["W", "d10"], ["B", "d11"], ["W", "c9"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [4]}
+{"id": "Oon15_Sue_0329_15.sgf", "initialStones": [["B", "k10"], ["B", "c10"]], "moves": [["W", "e10"], ["B", "e11"], ["W", "d10"], ["B", "d11"], ["W", "c9"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [4]}

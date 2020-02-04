@@ -1,1 +1,1 @@
-{"id": "Tak13_cho_0329_6.sgf", "initialStones": [["B", "k4"], ["B", "k10"]], "moves": [["W", "h11"], ["B", "d10"], ["W", "f11"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [2]}
+{"id": "Tak13_cho_0329_6.sgf", "initialStones": [["B", "k4"], ["B", "k10"]], "moves": [["W", "h11"], ["B", "d10"], ["W", "f11"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [2]}

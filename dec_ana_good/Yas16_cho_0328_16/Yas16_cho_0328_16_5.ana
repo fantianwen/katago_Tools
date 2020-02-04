@@ -1,1 +1,1 @@
-{"id": "Yas16_cho_0328_16.sgf", "initialStones": [["B", "k11"], ["B", "k3"]], "moves": [["W", "f11"], ["B", "k9"], ["W", "k5"], ["B", "h4"], ["W", "l3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 2000, "analyzeTurns": [4]}
+{"id": "Yas16_cho_0328_16.sgf", "initialStones": [["B", "k11"], ["B", "k3"]], "moves": [["W", "f11"], ["B", "k9"], ["W", "k5"], ["B", "h4"], ["W", "l3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [4]}
