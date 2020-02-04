@@ -56,4 +56,4 @@ for anaFile_ in os.listdir(anaFileRoot):
             setDiffInfo(name=moveFileName, anaText=anaText)
 
 # anaPD.to_csv('testAnaExcel.csv')
-anaPD_BA.to_csv('testAnaDiff.csv')
+anaPD_BA.to_csv('testAnaGoodDiff.csv')
