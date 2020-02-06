@@ -11,7 +11,7 @@ originalTrainingData = pd.read_csv('anaSampledForTraining.csv')
 print(originalTrainingData.columns)
 
 forTrainingData = shuffle(originalTrainingData)
-X = forTrainingData[['wrdiff', 'trdiff']]
+X = forTrainingData[['wrdiff']]
 Y = forTrainingData['label']
 
 mlp = MLPClassifier()
