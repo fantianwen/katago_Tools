@@ -1,1 +1,1 @@
-{"id": "Koi03_Sue_0328_3.sgf", "initialStones": [["B", "k10"], ["B", "k4"]], "moves": [["W", "d11"], ["B", "c4"], ["W", "e4"], ["B", "g3"], ["W", "c3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [4]}
+{"id": "Koi03_Sue_0328_3.sgf", "initialStones": [["B", "k10"], ["B", "k4"]], "moves": [["W", "d11"], ["B", "c4"], ["W", "e4"], ["B", "g3"], ["W", "c3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "includeOwnership": true, "analyzeTurns": [4]}

@@ -1,1 +1,1 @@
-{"id": "Yas05_Kob_0328_5.sgf", "initialStones": [["B", "k10"], ["B", "d4"]], "moves": [["W", "h11"], ["B", "l8"], ["W", "f3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [2]}
+{"id": "Yas05_Kob_0328_5.sgf", "initialStones": [["B", "k10"], ["B", "d4"]], "moves": [["W", "h11"], ["B", "l8"], ["W", "f3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "includeOwnership": true, "analyzeTurns": [2]}

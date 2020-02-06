@@ -53,7 +53,7 @@ def getMoves(moves, handicapStoneNumber):
 
 def saveToFile(json_tuple, fileName, turnNumber):
     fileFolderName = fileName[:-4]
-    _rootfile = '/home/radasm/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
+    _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
     if not os.path.exists(_rootfile):
         os.mkdir(_rootfile)
     fileObject = open(_rootfile + "/" + fileFolderName + "_" + str(turnNumber) + ".ana", 'w')
@@ -63,7 +63,7 @@ def saveToFile(json_tuple, fileName, turnNumber):
 
 def deleteFile(fileName, turnNumber):
     fileFolderName = fileName[:-4]
-    _rootfile = '/home/radasm/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
+    _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
     if not os.path.exists(_rootfile):
         os.mkdir(_rootfile)
     forDeleteFile1 = _rootfile + "/" + fileFolderName + "_" + str(turnNumber) + ".ana"
@@ -192,7 +192,7 @@ def parseForAnalysis(filePath):
         return len(moves)-handicapStones-1
 
 
-RootPath = '/home/radasm/GoProjects/Go_data/detection'
+RootPath = '/home/fan/GoProjects/Go_data/detection'
 
 files = os.listdir(RootPath)
 s = []

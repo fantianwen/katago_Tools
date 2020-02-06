@@ -1,1 +1,1 @@
-{"id": "Oon11_Kob_0329_11.sgf", "initialStones": [["B", "l10"], ["B", "c4"]], "moves": [["W", "e4"], ["B", "e3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "analyzeTurns": [1]}
+{"id": "Oon11_Kob_0329_11.sgf", "initialStones": [["B", "l10"], ["B", "c4"]], "moves": [["W", "e4"], ["B", "e3"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "includeOwnership": true, "analyzeTurns": [1]}
