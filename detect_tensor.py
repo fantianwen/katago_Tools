@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import numpy as np
 import pandas as pd
+import sklearn as sk
 import tensorflow.compat.v1 as tf
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.utils import shuffle
@@ -39,10 +40,6 @@ n_classes = 2  # MNIST total classes (0-9 digits)
 X = tf.placeholder("float", [None, n_input])
 Y = tf.placeholder("float", [None, n_classes])
 
-weight_mean = {
-
-}
-
 # Store layers weight & bias
 weights = {
     'h1': tf.Variable(tf.random_normal([n_input, n_hidden_1])),
@@ -59,6 +56,18 @@ saver = tf.train.Saver()
 
 
 def cross_validate(session_, split_size=10):
+    # weights_mean = {
+    #     'h1': tf.Variable(tf.zeros([n_input, n_hidden_1])),
+    #     'h2': tf.Variable(tf.zeros([n_hidden_1, n_hidden_2])),
+    #     'out': tf.Variable(tf.zeros([n_hidden_2, n_classes]))
+    # }
+    #
+    # biases_mean = {
+    #     'b1': tf.Variable(tf.zeros([n_hidden_1])),
+    #     'b2': tf.Variable(tf.zeros([n_hidden_2])),
+    #     'out': tf.Variable(tf.zeros([n_classes]))
+    # }
+
     results = []
     count = 0
     kf = KFold(n_splits=split_size)
@@ -68,18 +77,18 @@ def cross_validate(session_, split_size=10):
         val_x = X_trainingData[val_idx]
         val_y = Y_trainingData[val_idx]
         run_train(session_, train_x, train_y, val_x, val_y, count)
-        count += 1
-    return results
+        # weights_mean = weights_step, weights_mean
+        # biases_mean = tf.add(biases_step, biases_mean)
+    # weights_mean = session_.run(tf.divide(weights_mean, split_size))
+    # biases_mean = session_.run(tf.divide(biases_mean, split_size))
+    # return weights_mean, biases_mean
 
 
 # Create model
 def multilayer_perceptron(x):
-    # Hidden fully connected layer with 256 neurons
-    layer_1 = tf.add(tf.matmul(x, weights['h1']), biases['b1'])
-    # Hidden fully connected layer with 256 neurons
-    layer_2 = tf.add(tf.matmul(layer_1, weights['h2']), biases['b2'])
-    # Output fully connected layer with a neuron for each class
-    out_layer = tf.matmul(layer_2, weights['out']) + biases['out']
+    layer_1 = tf.nn.sigmoid(tf.add(tf.matmul(x, weights['h1']), biases['b1']))
+    layer_2 = tf.nn.sigmoid(tf.add(tf.matmul(layer_1, weights['h2']), biases['b2']))
+    out_layer = tf.nn.sigmoid(tf.matmul(layer_2, weights['out']) + biases['out'])
     return out_layer
 
 
@@ -93,6 +102,7 @@ optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
 train_op = optimizer.minimize(loss_op)
 
 correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(Y, 1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
 # Initializing the variables
 init = tf.global_variables_initializer()
@@ -120,22 +130,96 @@ def run_train(session_, train_x, train_y, val_x, val_y, count):
             # Compute average loss
             avg_cost += c / total_batch
         # Display logs per epoch step
-        # if epoch % display_step == 0:
-        # print("Epoch:", '%04d' % (epoch + 1), "cost=", "{:.9f}".format(avg_cost))
+        if epoch % display_step == 0:
+            print("Epoch:", '%04d' % (epoch + 1), "cost=", "{:.9f}".format(avg_cost))
     print("Optimization Finished!")
-
     # acc = np.mean([session_.run(accuracy, feed_dict={
     #     X: val_x[i],
     #     Y: val_y[i]})
     #               for i in range(len(val_x))]
     #               )
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-    print("Accuracy:", accuracy.eval({X: val_x, Y: val_y}))
-    # print('weights1:', session_.run(weights))
-    # saver.save(session_, save_path='models/count' + str(count) + '.ckpt')
+    # accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+
+    # the recall for good moves
+
+    # good_x_index = tf.where(tf.equal(val_y, [0, 1]))
+    good_moves_x = []
+    good_moves_y = []
+
+    bad_moves_x = []
+    bad_moves_y = []
+
+    # index = 0
+    # for val in val_y:
+    #     # print(val)
+    #     if (val == [0, 1]).all():
+    #         good_moves_y.append(val)
+    #         good_moves_x.append(val_x[index])
+    #     else:
+    #         bad_moves_y.append(val)
+    #         bad_moves_x.append(val_x[index])
+    #     index += 1
+
+    f1(session_, val_x, val_y, model='single')
+    # f1(session_, bad_moves_x, bad_moves_y)
+
+    # f_score(session_,)
+    # the recall for bad moves
+
+
+def f1(session_, val_x, y_true, model='multi'):
+
+    # y_p = tf.arg_max(logits, 1)
+    val_accuracy, y_hat = session_.run([accuracy, logits], feed_dict={X: val_x, Y: y_true})
+    # y_true = np.argmax(val_y, 1)
+
+    epsilon = 1e-7
+    y_hat = tf.round(y_hat)  # 将经过sigmoid激活的张量四舍五入变为0，1输出
+    print(y_hat.eval())
+
+    tp = tf.reduce_sum(tf.cast(y_hat * y_true, 'float'), axis=0)
+    # tn = tf.sum(tf.cast((1-y_hat)*(1-y_true), 'float'), axis=0)
+    fp = tf.reduce_sum(tf.cast((1 - y_hat) * y_true, 'float'), axis=0)
+    fn = tf.reduce_sum(tf.cast(y_hat * (1 - y_true), 'float'), axis=0)
+
+    p = tp / (tp + fp + epsilon)  # epsilon的意义在于防止分母为0，否则当分母为0时python会报错
+    r = tp / (tp + fn + epsilon)
+
+    f1 = 2 * p * r / (p + r + epsilon)
+    f1 = tf.where(tf.is_nan(f1), tf.zeros_like(f1), f1)
+
+    print(f1.eval())
+
+    if model == 'single':
+        return f1
+    if model == 'multi':
+        return tf.reduce_mean(f1)
+
+def f_score(session_, val_x, val_y, print_label=''):
+    y_p = tf.arg_max(logits, 1)
+    val_accuracy, y_pred = session_.run([accuracy, y_p], feed_dict={X: val_x, Y: val_y})
+    # good moves
+    y_true = np.argmax(val_y, 1)
+
+    TP = tf.count_nonzero(y_pred * y_true, dtype=tf.float32)
+    TN = tf.count_nonzero((y_pred - 1) * (y_true - 1), dtype=tf.float32)
+    FP = tf.count_nonzero(y_pred * (y_true - 1), dtype=tf.float32)
+    FN = tf.count_nonzero((y_pred - 1) * y_true, dtype=tf.float32)
+
+    precision = TP / (TP + FP)
+    recall = TP / (TP + FN)
+    f1 = 2 * precision * recall / (precision + recall)
+
+    print(precision)
+    # the recall for total samples
+    # print("%s Accuracy: %f" % (print_label, val_accuracy))
+    # print("%s Precision: %f" % (print_label, precision))
+    # print("%s Recall: %f" % (print_label, recall))
+    # print("%s f1_score: %f" % (print_label, f1))
 
 
 with tf.Session() as session:
     session.run(init)
-    result = cross_validate(session)
-    print("Cross-validation result: %s" % result)
+    cross_validate(session)
+    # accuracy_t = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+    # print("Accuracy_model:", accuracy_t.eval({X: X_trainingData, Y: Y_trainingData}))

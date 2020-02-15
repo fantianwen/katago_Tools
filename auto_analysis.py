@@ -26,7 +26,7 @@ class GTPSubProcess(object):
 
         print("got: {}".format(result))
         return result
-        
+
         for line in io.TextIOWrapper(self.subprocess.stdout, encoding="utf-8"):  # or another encoding
             print(line)
             result += line
@@ -167,10 +167,18 @@ KataGo = ["/home/ikeda-05444/users/fan/GoProjects/KataGo/cpp/katago", "analysis"
           "/home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz", "-analysis-threads", "16"]
 
 KataGo_gtp = ["/home/ikeda-05444/users/fan/GoProjects/KataGo/cpp/katago", "gtp", "-config",
-              "/home/ikeda-05444/users/fan/GoProjects/KataGo/cpp/configs/gtp_example.cfg", "-model",
+              "/home/ikeda-05444/users/fan/GoProjects/KataGo/cp  p/configs/gtp_example.cfg", "-model",
               "/home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz"]
 
-teststr = '{"id": "test", "initialStones": [["B", "k10"], ["B", "d10"], ["B", "d4"], ["B", "k4"]], "moves": [["W", "f11"], ["B", "c11"], ["W", "h11"], ["B", "k11"], ["W", "l8"], ["B", "l9"], ["W", "k8"], ["B", "m9"], ["W", "h9"], ["B", "g4"], ["W", "l3"], ["B", "l4"], ["W", "k3"], ["B", "j3"], ["W", "j2"], ["B", "h3"], ["W", "h2"], ["B", "g2"], ["W", "f3"], ["B", "g3"], ["W", "c6"], ["B", "d5"], ["W", "b4"], ["B", "d6"], ["W", "c7"], ["B", "c3"], ["W", "b3"], ["B", "c2"], ["W", "m4"], ["B", "m5"], ["W", "m3"], ["B", "l6"], ["W", "m8"], ["B", "n9"], ["W", "c9"], ["B", "e10"], ["W", "e8"], ["B", "f10"], ["W", "g10"], ["B", "c10"], ["W", "d12"], ["B", "e12"], ["W", "f12"], ["B", "e11"], ["W", "e13"], ["B", "c12"], ["W", "b10"], ["B", "f9"], ["W", "f8"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 16000, "analyzeTurns": [1, 2, 5, 6, 21, 22, 23, 24, 33, 34, 35, 36, 39, 40]}'
+teststr = '{"id": "test", "initialStones": [["B", "k10"], ["B", "d10"], ["B", "d4"], ["B", "k4"]], "moves": [["W", ' \
+          '"f11"], ["B", "c11"], ["W", "h11"], ["B", "k11"], ["W", "l8"], ["B", "l9"], ["W", "k8"], ["B", "m9"], ' \
+          '["W", "h9"], ["B", "g4"], ["W", "l3"], ["B", "l4"], ["W", "k3"], ["B", "j3"], ["W", "j2"], ["B", "h3"], ' \
+          '["W", "h2"], ["B", "g2"], ["W", "f3"], ["B", "g3"], ["W", "c6"], ["B", "d5"], ["W", "b4"], ["B", "d6"], ' \
+          '["W", "c7"], ["B", "c3"], ["W", "b3"], ["B", "c2"], ["W", "m4"], ["B", "m5"], ["W", "m3"], ["B", "l6"], ' \
+          '["W", "m8"], ["B", "n9"], ["W", "c9"], ["B", "e10"], ["W", "e8"], ["B", "f10"], ["W", "g10"], ["B", ' \
+          '"c10"], ["W", "d12"], ["B", "e12"], ["W", "f12"], ["B", "e11"], ["W", "e13"], ["B", "c12"], ["W", "b10"], ' \
+          '["B", "f9"], ["W", "f8"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, ' \
+          '"maxVisits": 16000, "analyzeTurns": [1, 2, 5, 6, 21, 22, 23, 24, 33, 34, 35, 36, 39, 40]} '
 enginne = GTPFacade("kata", KataGo)
 
 time.sleep(8)
@@ -186,17 +194,19 @@ def saveAnaToFile(anaText, rootName, fileName):
     fileObject.write(str(anaText))
     fileObject.close()
 
+
 for path, dir_list, file_list in os.walk(RootPath):
     print(dir_list)
     for dir in dir_list:
         analysedText = '['
-        for file in [f for f in os.listdir(RootPath+"/"+str(dir)) if os.path.isfile(os.path.join(RootPath+"/"+str(dir), f))]:
+        for file in [f for f in os.listdir(RootPath + "/" + str(dir)) if
+                     os.path.isfile(os.path.join(RootPath + "/" + str(dir), f))]:
             if not os.path.isdir(file):
                 # moveNumber
-                ana_text = open(RootPath+"/"+str(dir)+"/"+file).read()
+                ana_text = open(RootPath + "/" + str(dir) + "/" + file).read()
                 analysedText += enginne.sendstr(ana_text)
                 analysedText += ","
                 print(analysedText)
-        analysedText = analysedText[:len(analysedText)-1]
+        analysedText = analysedText[:len(analysedText) - 1]
         analysedText += ']'
         saveAnaToFile(analysedText, RootAnaReportPath, str(dir))
