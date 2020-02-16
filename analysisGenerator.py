@@ -42,7 +42,8 @@ def getMoves(moves, handicapStoneNumber):
     movesStr = []
     for i in range(handicapStoneNumber, len(moves)):
         moveBlock = []
-        if i % 2 == 0:
+        # forgot that this is a relationship between the moves number and the handicap
+        if i % 2 == (0 if handicapStoneNumber % 2 == 0 else 1):
             moveBlock.append("W")
         else:
             moveBlock.append("B")
@@ -51,8 +52,8 @@ def getMoves(moves, handicapStoneNumber):
     return movesStr
 
 
-def saveToFile(json_tuple, fileName, turnNumber):
-    fileFolderName = fileName[:-4]
+def saveToFile(json_tuple, fileName, turnNumber, handicap):
+    fileFolderName = fileName[:-4] + "_" + str(handicap)
     _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
     if not os.path.exists(_rootfile):
         os.mkdir(_rootfile)
@@ -61,17 +62,18 @@ def saveToFile(json_tuple, fileName, turnNumber):
     fileObject.close()
 
 
-def deleteFile(fileName, turnNumber):
-    fileFolderName = fileName[:-4]
+def deleteFile(fileName, turnNumber, handicap):
+    fileFolderName = fileName[:-4]+ "_" + str(handicap)
     _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
     if not os.path.exists(_rootfile):
-        os.mkdir(_rootfile)
+        return
     forDeleteFile1 = _rootfile + "/" + fileFolderName + "_" + str(turnNumber) + ".ana"
-    forDeleteFile2 = _rootfile + "/" + fileFolderName + "_" + str(turnNumber-1) + ".ana"
+    forDeleteFile2 = _rootfile + "/" + fileFolderName + "_" + str(turnNumber - 1) + ".ana"
     if os.path.exists(forDeleteFile1):
         os.remove(forDeleteFile1)
     if os.path.exists(forDeleteFile2):
         os.remove(forDeleteFile2)
+
 
 def parseForAnalysis(filePath):
     moves = []
@@ -131,7 +133,7 @@ def parseForAnalysis(filePath):
                     json_tuple['includeOwnership'] = True
 
                     json_tuple['analyzeTurns'] = analysisTurns
-                    saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones)
+                    saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
 
                 # if property == 'C':
                 #     comments = node.properties[property]
@@ -185,11 +187,11 @@ def parseForAnalysis(filePath):
                     comments = node.properties[property]
                     _comments = ''.join(comments)
                     if _comments.strip() != '':
-                        deleteFile(os.path.basename(filePath), len(moves) - handicapStones)
+                        deleteFile(os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
 
         f.close()
         # print(len(moves)-handicapStones-1)
-        return len(moves)-handicapStones-1
+        return len(moves) - handicapStones - 1
 
 
 RootPath = '/home/fan/GoProjects/Go_data/detection'

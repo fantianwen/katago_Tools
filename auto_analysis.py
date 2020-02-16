@@ -186,10 +186,8 @@ time.sleep(8)
 RootPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/dec_ana_good'
 RootAnaReportPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/ana_report_good'
 
-
 def saveAnaToFile(anaText, rootName, fileName):
     forsave = rootName + '/' + fileName + '.report'
-
     fileObject = open(forsave, 'w')
     fileObject.write(str(anaText))
     fileObject.close()
