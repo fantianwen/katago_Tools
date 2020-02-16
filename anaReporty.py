@@ -8,18 +8,21 @@ anaFileRoot = '/home/radasm/GoProjects/katago_Tools/ana_report_good'
 # anaTestFile = '/home/radasm/GoProjects/katago_Tools/ana_report/Kat01_cho_0323_1.report'
 anaPD = pd.DataFrame(columns=['name', 'move', 'wr', 'tr'])
 # anaPD.append(pd.Series(['222', '22', '11', '22'], index=anaPD.columns), ignore_index=True)
-anaPD_BA = pd.DataFrame(columns=['name', 'move', 'wrbefore', 'wrafter', 'wrdiff', 'trbefore', 'trafter', 'trdiff'])
+anaPD_BA = pd.DataFrame(columns=['name', 'move', 'wrbefore', 'wrafter', 'wrdiff', 'trbefore', 'trafter', 'trdiff', 'dist1b', 'ownbefore', 'ownafter', 'owndiff'])
+
+# def setInfo(name, anaText):
+#     for moveAnaReport in anaText:
+#         turnMove = moveAnaReport['turnNumber']
+#         moveInfos = moveAnaReport['moveInfos']
+#         bestMoveInfo = moveInfos[0]
+#         winrate = bestMoveInfo['winrate']
+#         scoreLead = bestMoveInfo['scoreLead']
+#
+#         anaPD.loc[len(anaPD)] = [name, turnMove, winrate, scoreLead]
 
 
-def setInfo(name, anaText):
-    for moveAnaReport in anaText:
-        turnMove = moveAnaReport['turnNumber']
-        moveInfos = moveAnaReport['moveInfos']
-        bestMoveInfo = moveInfos[0]
-        winrate = bestMoveInfo['winrate']
-        scoreLead = bestMoveInfo['scoreLead']
-
-        anaPD.loc[len(anaPD)] = [name, turnMove, winrate, scoreLead]
+def calulateDistance(, bestMoveInfo):
+    pass
 
 
 def setDiffInfo(name, anaText):
@@ -39,6 +42,9 @@ def setDiffInfo(name, anaText):
                     bestMoveInfo_ = moveInfos_[0]
                     winrate_ = bestMoveInfo_['winrate']
                     scoreLead_ = bestMoveInfo_['scoreLead']
+                    # dis1b
+                    dis1b = calulateDistance(best)
+
                     anaPD_BA.loc[len(anaPD_BA)] = [name, turnMove, winrate, winrate_, winrate_ - winrate, scoreLead,
                                                    scoreLead_, scoreLead_ - scoreLead]
 

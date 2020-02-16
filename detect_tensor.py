@@ -10,7 +10,6 @@ from sklearn.model_selection import KFold
 
 tf.disable_v2_behavior()
 
-# Import MNIST data
 originalTrainingData = pd.read_csv('anaSampledForTraining.csv')
 trainingData = shuffle(originalTrainingData)
 X_trainingData = np.array(trainingData['wrdiff']).reshape(len(originalTrainingData), 1)
@@ -31,10 +30,10 @@ batch_size = 100
 display_step = 1
 
 # Network Parameters
-n_hidden_1 = 256  # 1st layer number of neurons
-n_hidden_2 = 256  # 2nd layer number of neurons
-n_input = 1  # MNIST data input (img shape: 28*28)
-n_classes = 2  # MNIST total classes (0-9 digits)
+n_hidden_1 = 256
+n_hidden_2 = 256
+n_input = 1
+n_classes = 2
 
 # tf Graph input
 X = tf.placeholder("float", [None, n_input])
@@ -133,32 +132,6 @@ def run_train(session_, train_x, train_y, val_x, val_y, count):
         if epoch % display_step == 0:
             print("Epoch:", '%04d' % (epoch + 1), "cost=", "{:.9f}".format(avg_cost))
     print("Optimization Finished!")
-    # acc = np.mean([session_.run(accuracy, feed_dict={
-    #     X: val_x[i],
-    #     Y: val_y[i]})
-    #               for i in range(len(val_x))]
-    #               )
-    # accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-
-    # the recall for good moves
-
-    # good_x_index = tf.where(tf.equal(val_y, [0, 1]))
-    good_moves_x = []
-    good_moves_y = []
-
-    bad_moves_x = []
-    bad_moves_y = []
-
-    # index = 0
-    # for val in val_y:
-    #     # print(val)
-    #     if (val == [0, 1]).all():
-    #         good_moves_y.append(val)
-    #         good_moves_x.append(val_x[index])
-    #     else:
-    #         bad_moves_y.append(val)
-    #         bad_moves_x.append(val_x[index])
-    #     index += 1
 
     f1(session_, val_x, val_y, model='single')
     # f1(session_, bad_moves_x, bad_moves_y)
@@ -174,7 +147,7 @@ def f1(session_, val_x, y_true, model='multi'):
     # y_true = np.argmax(val_y, 1)
 
     epsilon = 1e-7
-    y_hat = tf.round(y_hat)  # 将经过sigmoid激活的张量四舍五入变为0，1输出
+    y_hat = tf.round(y_hat)
     print(y_hat.eval())
 
     tp = tf.reduce_sum(tf.cast(y_hat * y_true, 'float'), axis=0)
@@ -182,7 +155,7 @@ def f1(session_, val_x, y_true, model='multi'):
     fp = tf.reduce_sum(tf.cast((1 - y_hat) * y_true, 'float'), axis=0)
     fn = tf.reduce_sum(tf.cast(y_hat * (1 - y_true), 'float'), axis=0)
 
-    p = tp / (tp + fp + epsilon)  # epsilon的意义在于防止分母为0，否则当分母为0时python会报错
+    p = tp / (tp + fp + epsilon)
     r = tp / (tp + fn + epsilon)
 
     f1 = 2 * p * r / (p + r + epsilon)
