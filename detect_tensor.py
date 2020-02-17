@@ -55,18 +55,6 @@ saver = tf.train.Saver()
 
 
 def cross_validate(session_, split_size=10):
-    # weights_mean = {
-    #     'h1': tf.Variable(tf.zeros([n_input, n_hidden_1])),
-    #     'h2': tf.Variable(tf.zeros([n_hidden_1, n_hidden_2])),
-    #     'out': tf.Variable(tf.zeros([n_hidden_2, n_classes]))
-    # }
-    #
-    # biases_mean = {
-    #     'b1': tf.Variable(tf.zeros([n_hidden_1])),
-    #     'b2': tf.Variable(tf.zeros([n_hidden_2])),
-    #     'out': tf.Variable(tf.zeros([n_classes]))
-    # }
-
     results = []
     count = 0
     kf = KFold(n_splits=split_size)
@@ -76,11 +64,6 @@ def cross_validate(session_, split_size=10):
         val_x = X_trainingData[val_idx]
         val_y = Y_trainingData[val_idx]
         run_train(session_, train_x, train_y, val_x, val_y, count)
-        # weights_mean = weights_step, weights_mean
-        # biases_mean = tf.add(biases_step, biases_mean)
-    # weights_mean = session_.run(tf.divide(weights_mean, split_size))
-    # biases_mean = session_.run(tf.divide(biases_mean, split_size))
-    # return weights_mean, biases_mean
 
 
 # Create model
@@ -134,14 +117,9 @@ def run_train(session_, train_x, train_y, val_x, val_y, count):
     print("Optimization Finished!")
 
     f1(session_, val_x, val_y, model='single')
-    # f1(session_, bad_moves_x, bad_moves_y)
-
-    # f_score(session_,)
-    # the recall for bad moves
 
 
 def f1(session_, val_x, y_true, model='multi'):
-
     # y_p = tf.arg_max(logits, 1)
     val_accuracy, y_hat = session_.run([accuracy, logits], feed_dict={X: val_x, Y: y_true})
     # y_true = np.argmax(val_y, 1)
@@ -167,6 +145,7 @@ def f1(session_, val_x, y_true, model='multi'):
         return f1
     if model == 'multi':
         return tf.reduce_mean(f1)
+
 
 def f_score(session_, val_x, val_y, print_label=''):
     y_p = tf.arg_max(logits, 1)

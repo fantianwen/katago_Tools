@@ -1,1 +1,0 @@
-{"id": "Koi04_Sue_0328_4.sgf", "initialStones": [["B", "l10"], ["B", "k3"]], "moves": [["W", "j10"], ["B", "g10"], ["W", "j8"], ["B", "l8"], ["W", "l11"], ["B", "m11"], ["W", "k11"], ["B", "m9"], ["W", "e11"], ["B", "h11"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 20000, "analyzeTurns": [9]}

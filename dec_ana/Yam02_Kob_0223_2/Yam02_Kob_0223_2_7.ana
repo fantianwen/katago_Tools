@@ -1,1 +1,0 @@
-{"id": "Yam02_Kob_0223_2.sgf", "initialStones": [["B", "k10"], ["B", "d4"]], "moves": [["W", "d10"], ["B", "k4"], ["W", "l6"], ["B", "l8"], ["W", "l3"], ["B", "k3"], ["W", "l4"], ["B", "j6"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 20000, "analyzeTurns": [7]}

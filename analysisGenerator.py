@@ -112,7 +112,7 @@ def parseForAnalysis(filePath):
                 if begin:
                     analysisTurns.clear()
 
-                    analysisTurns.append(len(moves) - handicapStones - 1)
+                    analysisTurns.append(len(moves) - handicapStones)
 
                     json_tuple["id"] = os.path.basename(filePath)
 
@@ -135,6 +135,7 @@ def parseForAnalysis(filePath):
                     json_tuple['analyzeTurns'] = analysisTurns
                     saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
 
+                # bad moves
                 # if property == 'C':
                 #     comments = node.properties[property]
                 #     _comments = ''.join(comments)
@@ -157,10 +158,10 @@ def parseForAnalysis(filePath):
                 #
                 #         json_tuple['boardYSize'] = 13
                 #
-                #         json_tuple['maxVisits'] = 1600
+                #         json_tuple['maxVisits'] = 10000
                 #
                 #         json_tuple['analyzeTurns'] = analysisTurns
-                #         saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones - 1)
+                #         saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones - 1, handicapStones)
                 #
                 #         analysisTurns.clear()
                 #         analysisTurns.append(len(moves) - handicapStones)
@@ -179,10 +180,11 @@ def parseForAnalysis(filePath):
                 #
                 #         json_tuple['boardYSize'] = 13
                 #
-                #         json_tuple['maxVisits'] = 1600
+                #         json_tuple['maxVisits'] = 10000
                 #
                 #         json_tuple['analyzeTurns'] = analysisTurns
-                #         saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones)
+                #         saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
+                # good moves
                 if property == 'C':
                     comments = node.properties[property]
                     _comments = ''.join(comments)
