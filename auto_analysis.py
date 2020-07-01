@@ -164,7 +164,7 @@ class GTPFacade(object):
 
 KataGo = ["/home/ikeda-05444/users/fan/GoProjects/KataGo/cpp/katago", "analysis", "-config",
           "/home/ikeda-05444/users/fan/GoProjects/KataGo/cpp/configs/analysis_example.cfg", "-model",
-          "/home/ikeda-05444/users/fan/GoProjects/KataModels/model-20200120.txt.gz", "-analysis-threads", "16"]
+          "/home/ikeda-05444/users/shi/KataTest/model.txt.gz", "-analysis-threads", "1"]
 
 KataGo_gtp = ["/home/ikeda-05444/users/fan/GoProjects/KataGo/cpp/katago", "gtp", "-config",
               "/home/ikeda-05444/users/fan/GoProjects/KataGo/cp  p/configs/gtp_example.cfg", "-model",

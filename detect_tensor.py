@@ -10,19 +10,6 @@ from sklearn.model_selection import KFold
 
 tf.disable_v2_behavior()
 
-originalTrainingData = pd.read_csv('anaSampledForTraining.csv')
-trainingData = shuffle(originalTrainingData)
-X_trainingData = np.array(trainingData['wrdiff']).reshape(len(originalTrainingData), 1)
-Y_trainingData = []
-for data in trainingData['label']:
-    if data is 0:
-        Y_trainingData.append([1, 0])
-    else:
-        Y_trainingData.append([0, 1])
-Y_trainingData = np.array(Y_trainingData).reshape(len(originalTrainingData), 2)
-
-totalNumber = len(originalTrainingData.index)
-
 # Parameters
 learning_rate = 0.001
 training_epochs = 150
@@ -32,8 +19,22 @@ display_step = 1
 # Network Parameters
 n_hidden_1 = 256
 n_hidden_2 = 256
-n_input = 1
+n_input = 9
 n_classes = 2
+
+
+originalTrainingData = pd.read_csv('new_train_data.csv')
+trainingData = shuffle(originalTrainingData)
+X_trainingData = np.array(trainingData[['wrdiff','wrbefore','wrafter','owndiff','shapelog','trafter','trbefore','dist1b', 'move']]).reshape(len(originalTrainingData), n_input)
+Y_trainingData = []
+for data in trainingData['label']:
+    if data is 0:
+        Y_trainingData.append([1, 0])
+    else:
+        Y_trainingData.append([0, 1])
+Y_trainingData = np.array(Y_trainingData).reshape(len(originalTrainingData), n_classes)
+totalNumber = len(originalTrainingData.index)
+
 
 # tf Graph input
 X = tf.placeholder("float", [None, n_input])

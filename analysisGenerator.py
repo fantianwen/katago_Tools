@@ -158,7 +158,7 @@ def parseForAnalysis(filePath):
 
                         json_tuple['boardYSize'] = 13
 
-                        json_tuple['maxVisits'] = 10000
+                        json_tuple['maxVisits'] = 6000
 
                         json_tuple['includeOwnership'] = True
 
@@ -182,7 +182,7 @@ def parseForAnalysis(filePath):
 
                         json_tuple['boardYSize'] = 13
 
-                        json_tuple['maxVisits'] = 10000
+                        json_tuple['maxVisits'] = 6000
 
                         json_tuple['includeOwnership'] = True
 
