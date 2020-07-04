@@ -1,1 +1,1 @@
-{"id": "Yam04_cho_0229_1.sgf", "initialStones": [["B", "k10"], ["B", "d4"], ["B", "k4"]], "moves": [["W", "d10"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "includeOwnership": true, "analyzeTurns": [1]}
+{"id": "Yam04_cho_0229_1.sgf", "initialStones": [["B", "k10"], ["B", "d4"], ["B", "k4"]], "moves": [["W", "d10"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 6000, "includeOwnership": true, "analyzeTurns": [1]}

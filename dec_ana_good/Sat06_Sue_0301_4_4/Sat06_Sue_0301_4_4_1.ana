@@ -1,1 +1,1 @@
-{"id": "Sat06_Sue_0301_4.sgf", "initialStones": [["B", "d4"], ["B", "k11"], ["B", "l9"], ["B", "d10"]], "moves": [["W", "f11"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 10000, "includeOwnership": true, "analyzeTurns": [1]}
+{"id": "Sat06_Sue_0301_4.sgf", "initialStones": [["B", "d4"], ["B", "k11"], ["B", "l9"], ["B", "d10"]], "moves": [["W", "f11"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 6000, "includeOwnership": true, "analyzeTurns": [1]}
