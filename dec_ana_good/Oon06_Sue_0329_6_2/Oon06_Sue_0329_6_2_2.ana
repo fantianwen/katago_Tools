@@ -1,1 +1,0 @@
-{"id": "Oon06_Sue_0329_6.sgf", "initialStones": [["B", "k10"], ["B", "d4"]], "moves": [["W", "d10"], ["B", "k4"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 6000, "includeOwnership": true, "analyzeTurns": [2]}

@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 import pandas as pd
 
-# anaGood = pd.read_csv('testAnaGoodDiff.csv')
-# anaGoodSampled = anaGood.sample(n=2000, replace=False)
-# anaGoodSampled['label'] = '0'
+anaGood = pd.read_csv('testAnaGoodDiff_new.csv')
+anaGoodSampled = anaGood.sample(n=2000, replace=False)
+anaGoodSampled['label'] = '0'
 
-# anaGoodSampled.to_csv('anaGoodSampled.csv')
+anaGoodSampled.to_csv('anaGoodSampled.csv')
 
 good_data = pd.read_csv('anaGoodSampled.csv')
-bad_data = pd.read_csv('testAnaBadDiff.csv')
+bad_data = pd.read_csv('testAnaBadDiff_new.csv')
 bad_data['label'] = '1'
 
 train_data = good_data.append(bad_data, ignore_index=True)

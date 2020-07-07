@@ -1,25 +1,19 @@
-import numpy as np
+import pandas as pd
+import os
 
-# test = [
-#     [1, [0, 1]],
-#     [-1, [0, 1]],
-#     [0, [1, 0]],
-#     [1, [0, 1]]
-# ]
-#
-# values = [1, 2, 3, 4, 5]
-#
-# print(np.argmax(test, 0))
-# index = 0
-# indexes = []
-# for x in test:
-#     if x == [0, 1]:
-#         indexes.append(index)
-#     index += 1
-# print(indexes)
-# print()
+anaGood = pd.read_csv('testAnaGoodDiff_new.csv')
+names = anaGood.get('name')
+rootFilePath = '/home/fan/GoProjects/Go_data/detection'
 
-x = [(1,2,3),(4,5)]
-as_x = np.asarray(x)
-print(as_x)
-print(as_x.shape)
+
+for path, dir_list, file_list in os.walk(rootFilePath):
+    print(file_list)
+    for name in names:
+        # print(name)
+        sfgName = name + ".sgf"
+        sgfFile = rootFilePath+"/"+sfgName
+        if sfgName in file_list:
+            if os.path.exists(sgfFile):
+                os.remove(sgfFile)
+
+

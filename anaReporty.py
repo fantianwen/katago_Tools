@@ -8,7 +8,7 @@ import math
 moveIndexes = 'ABCDEFGHJKLMN'
 moveIndexes_low = 'abcdefghjklmn'
 
-anaFileRoot = '/home/fan/GoProjects/katago_Tools/ana_report'
+anaFileRoot = '/home/fan/GoProjects/katago_Tools/ana_report_good'
 # anaTestFile = '/home/radasm/GoProjects/katago_Tools/ana_report/Kat01_cho_0323_1.report'
 # anaPD = pd.DataFrame(columns=['name', 'move', 'wr', 'tr'])
 # anaPD.append(pd.Series(['222', '22', '11', '22'], index=anaPD.columns), ignore_index=True)
@@ -51,6 +51,8 @@ def calulateDistance(originalMove, bestMoveInfo):
 def getvertextNumber_upper(turnMove):
     original_x = turnMove[0]
     original_y = turnMove[1:]
+    print(original_x)
+    print(moveIndexes)
     original_x_i = moveIndexes.index(original_x)
     original_y_i = int(original_y)-1
     return original_y_i*13+original_x_i
@@ -77,7 +79,7 @@ def setDiffInfo(name, anaText, filePath):
 
             # get actual black move
             # filepath [search] (turnMove + 1)
-            originalFilePath = '/home/fan/GoProjects/katago_Tools/dec_ana'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
+            originalFilePath = '/home/fan/GoProjects/katago_Tools/dec_ana_good'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
             if os.path.exists(originalFilePath):
                 with open(originalFilePath, 'r') as moveInfomation:
                     move_json = json.loads(moveInfomation.read())
@@ -102,9 +104,20 @@ def setDiffInfo(name, anaText, filePath):
                     bestMoveInfo_ = moveInfos_[0]
                     winrate_ = bestMoveInfo_['winrate']
                     scoreLead_ = bestMoveInfo_['scoreLead']
-                    ownafter = moveAnaReport_['ownership'][getvertextNumber_upper(bestMoveInfo_['move'])]
-                    anaPD_BA.loc[len(anaPD_BA)] = [name, handi, turnMove, shaperate, shapelog, winrate, winrate_, winrate_ - winrate, scoreLead,
-                                                   scoreLead_, scoreLead_ - scoreLead, dis1b, ownbefore, ownafter, ownbefore-ownafter]
+
+                    move_ = bestMoveInfo_['move']
+                    if move_ == 'pass':
+                        anaPD_BA.loc[len(anaPD_BA)] = [name, handi, turnMove, shaperate, shapelog, winrate, winrate_,
+                                                       winrate_ - winrate, scoreLead,
+                                                       scoreLead_, scoreLead_ - scoreLead, dis1b, ownbefore, 'ana',
+                                                       'ana']
+
+                    else:
+                        ownafter = moveAnaReport_['ownership'][getvertextNumber_upper(bestMoveInfo_['move'])]
+                        anaPD_BA.loc[len(anaPD_BA)] = [name, handi, turnMove, shaperate, shapelog, winrate, winrate_,
+                                                     winrate_ - winrate, scoreLead,
+                                                     scoreLead_, scoreLead_ - scoreLead, dis1b, ownbefore, ownafter,
+                                                     ownbefore - ownafter]
 
                     break
 
@@ -122,4 +135,4 @@ for anaFile_ in os.listdir(anaFileRoot):
             setDiffInfo(name=moveFileName, anaText=anaText, filePath=anaFile_)
 
 # anaPD.to_csv('testAnaExcel.csv')
-anaPD_BA.to_csv('testAnaBadDiff.csv')
+anaPD_BA.to_csv('testAnaGoodDiff_new.csv')

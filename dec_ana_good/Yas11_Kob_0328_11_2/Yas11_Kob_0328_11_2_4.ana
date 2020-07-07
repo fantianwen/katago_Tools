@@ -1,1 +1,0 @@
-{"id": "Yas11_Kob_0328_11.sgf", "initialStones": [["B", "k10"], ["B", "k3"]], "moves": [["W", "k5"], ["B", "j5"], ["W", "l3"], ["B", "k4"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 6000, "includeOwnership": true, "analyzeTurns": [4]}

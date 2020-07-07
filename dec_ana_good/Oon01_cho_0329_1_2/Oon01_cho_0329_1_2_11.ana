@@ -1,1 +1,0 @@
-{"id": "Oon01_cho_0329_1.sgf", "initialStones": [["B", "k10"], ["B", "d4"]], "moves": [["W", "h11"], ["B", "k4"], ["W", "l8"], ["B", "j9"], ["W", "l11"], ["B", "l10"], ["W", "k11"], ["B", "k7"], ["W", "k8"], ["B", "j8"], ["W", "j7"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 6000, "includeOwnership": true, "analyzeTurns": [11]}
