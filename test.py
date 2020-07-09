@@ -5,7 +5,7 @@ import os
 anaGood = pd.read_csv('testAnaGoodDiff_new.csv')
 names = anaGood.get('name')
 rootFilePath = '/home/fan/GoProjects/Go_data/detection'
-marked = ['CHIISAI', 'KATACHI', 'SOPPO', 'BIBIRI', 'POKA', 'AJIKESHI', 'HOUCHI', 'IKKI', 'reigai', 'OTUKIAI']
+marked = ['BIBIRI', 'KATACHI', 'CHIISAI', 'SOPPO', 'OTUKIAI', 'AJIKESHI', 'IKKI', 'POKA', 'HOUCHI', 'reigai']
 
 # for path, dir_list, file_list in os.walk(rootFilePath):
 #     print(file_list)
