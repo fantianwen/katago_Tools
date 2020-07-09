@@ -1,0 +1,1 @@
+{"id": "Mas01_cho_0322_1.sgf", "initialStones": [["B", "d10"], ["B", "k4"], ["B", "l11"], ["B", "c3"]], "moves": [["W", "f11"], ["B", "d11"], ["W", "k11"], ["B", "k10"], ["W", "j11"]], "rules": "tromp-taylor", "komi": 0.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 6000, "includeOwnership": true, "analyzeTurns": [5]}

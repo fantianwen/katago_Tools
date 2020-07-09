@@ -1,0 +1,1 @@
+{"id": "Sat12_Sue_0303_2.sgf", "initialStones": [["B", "c11"], ["B", "k10"], ["B", "d4"], ["B", "d9"]], "moves": [["W", "l4"], ["B", "j3"]], "rules": "tromp-taylor", "komi": 7.5, "boardXSize": 13, "boardYSize": 13, "maxVisits": 6000, "includeOwnership": true, "analyzeTurns": [2]}
