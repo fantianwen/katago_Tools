@@ -78,33 +78,11 @@ class GTPFacade(object):
     def genmove(self, color):
         self.gtp_subprocess.send(
             "genmove {}\n".format(gtp_color(color)))
-        # while True:
-        #     isRunning = self.gtp_subprocess.send("check_running\n")
-        #     print("=====================The running result is {}===========".format(isRunning))
-        #     if not isRunning:
-        #         print("============get out!!!!================")
-        #         break
-        # message = self.gtp_subprocess.send("lastmove\n")
-
-        # print("genmove result is {}".format(message))
-        # assert message[0] == "="
-        # return parse_vertex(message[1:].strip())
 
     def genmove1(self, color):
         self.gtp_subprocess.send1(
             "genmove {}\n".format(gtp_color(color)))
         time.sleep(5)
-        # while True:
-        #     isRunning = self.gtp_subprocess.send("check_running\n")
-        #     print("=====================The running result is {}===========".format(isRunning))
-        #     if not isRunning:
-        #         print("============get out!!!!================")
-        #         break
-        # message = self.gtp_subprocess.send("lastmove\n")
-
-        # print("genmove result is {}".format(message))
-        # assert message[0] == "="
-        # return parse_vertex(message[1:].strip())
 
     def genmove_katago(self, color):
         self.gtp_subprocess.send(
