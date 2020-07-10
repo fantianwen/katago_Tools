@@ -10,7 +10,7 @@ moveIndexes_low = 'abcdefghjklmn'
 
 count = 0
 
-anaFileRoot = '/home/fan/GoProjects/katago_Tools/ana_report_good'
+anaFileRoot = '/home/fan/GoProjects/katago_Tools/ana_report'
 # anaTestFile = '/home/radasm/GoProjects/katago_Tools/ana_report/Kat01_cho_0323_1.report'
 # anaPD = pd.DataFrame(columns=['name', 'move', 'wr', 'tr'])
 # anaPD.append(pd.Series(['222', '22', '11', '22'], index=anaPD.columns), ignore_index=True)
@@ -130,7 +130,7 @@ def setDiffInfo(name, anaText, filePath):
             trstbefore = bestMoveInfo['scoreStdev']
             # get actual black move
             # filepath [search] (turnMove + 1)
-            originalFilePath = '/home/fan/GoProjects/katago_Tools/dec_ana_good'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
+            originalFilePath = '/home/fan/GoProjects/katago_Tools/dec_ana'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
             if os.path.exists(originalFilePath):
                 with open(originalFilePath, 'r') as moveInfomation:
                     move_json = json.loads(moveInfomation.read())
@@ -237,7 +237,6 @@ def setDiffInfo(name, anaText, filePath):
                                                  ownbefore - ownafter,trstbefore,trstafter,trstafter-trstbefore,dist01,dist02,dist21,dist0b,dist2b,bdec30,wdec30]
                     break
 
-
 for anaFile_ in os.listdir(anaFileRoot):
     if not os.path.isdir(anaFile_):
         with open(anaFileRoot + '/' + anaFile_, 'rt') as anafile:
@@ -251,6 +250,6 @@ for anaFile_ in os.listdir(anaFileRoot):
             # FAN --- here should be checked
             setDiffInfo(name=moveFileName, anaText=anaText, filePath=anaFile_)
 
-# anaPD.to_csv('testAnaExcel.csv')
-anaPD_BA.to_csv('testAnaGoodDiff_3.csv')
 print(count)
+# anaPD.to_csv('testAnaExcel.csv')
+# anaPD_BA.to_csv('testAnaGoodDiff_3.csv')
