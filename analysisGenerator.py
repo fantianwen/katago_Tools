@@ -54,7 +54,7 @@ def getMoves(moves, handicapStoneNumber):
 
 def saveToFile(json_tuple, fileName, turnNumber, handicap):
     fileFolderName = fileName[:-4] + "_" + str(handicap)
-    _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
+    _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana/' + fileFolderName
     if not os.path.exists(_rootfile):
         os.mkdir(_rootfile)
     fileObject = open(_rootfile + "/" + fileFolderName + "_" + str(turnNumber) + ".ana", 'w')
@@ -64,7 +64,7 @@ def saveToFile(json_tuple, fileName, turnNumber, handicap):
 
 def deleteFile(fileName, turnNumber, handicap):
     fileFolderName = fileName[:-4]+ "_" + str(handicap)
-    _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana_good/' + fileFolderName
+    _rootfile = '/home/fan/GoProjects/katago_Tools/dec_ana/' + fileFolderName
     if not os.path.exists(_rootfile):
         return
     forDeleteFile1 = _rootfile + "/" + fileFolderName + "_" + str(turnNumber) + ".ana"
@@ -109,91 +109,91 @@ def parseForAnalysis(filePath):
                     if move[0] != 'tt':
                         begin = True
 
-                if begin:
-                    analysisTurns.clear()
-
-                    analysisTurns.append(len(moves) - handicapStones)
-
-                    json_tuple["id"] = os.path.basename(filePath)
-
-                    json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
-
-                    json_tuple['moves'] = getMoves(moves, handicapStones)
-
-                    json_tuple['rules'] = 'tromp-taylor'
-
-                    json_tuple['komi'] = float(komi)
-
-                    json_tuple['boardXSize'] = 13
-
-                    json_tuple['boardYSize'] = 13
-
-                    json_tuple['maxVisits'] = 6000
-
-                    json_tuple['includeOwnership'] = True
-
-                    json_tuple['analyzeTurns'] = analysisTurns
-                    saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
+                # if begin:
+                #     analysisTurns.clear()
+                #
+                #     analysisTurns.append(len(moves) - handicapStones)
+                #
+                #     json_tuple["id"] = os.path.basename(filePath)
+                #
+                #     json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
+                #
+                #     json_tuple['moves'] = getMoves(moves, handicapStones)
+                #
+                #     json_tuple['rules'] = 'tromp-taylor'
+                #
+                #     json_tuple['komi'] = float(komi)
+                #
+                #     json_tuple['boardXSize'] = 13
+                #
+                #     json_tuple['boardYSize'] = 13
+                #
+                #     json_tuple['maxVisits'] = 6000
+                #
+                #     json_tuple['includeOwnership'] = True
+                #
+                #     json_tuple['analyzeTurns'] = analysisTurns
+                #     saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
 
                 # bad moves
-                # if property == 'C':
-                #     comments = node.properties[property]
-                #     _comments = ''.join(comments)
-                #     if _comments.strip() != '':
-                #         analysisTurns.clear()
-                #
-                #         analysisTurns.append(len(moves) - handicapStones - 1)
-                #
-                #         json_tuple["id"] = os.path.basename(filePath)
-                #
-                #         json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
-                #
-                #         json_tuple['moves'] = getMoves(moves, handicapStones)
-                #
-                #         json_tuple['rules'] = 'tromp-taylor'
-                #
-                #         json_tuple['komi'] = float(komi)
-                #
-                #         json_tuple['boardXSize'] = 13
-                #
-                #         json_tuple['boardYSize'] = 13
-                #
-                #         json_tuple['maxVisits'] = 6000
-                #
-                #         json_tuple['includeOwnership'] = True
-                #
-                #         json_tuple['analyzeTurns'] = analysisTurns
-                #         saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones - 1, handicapStones)
-                #
-                #         analysisTurns.clear()
-                #         analysisTurns.append(len(moves) - handicapStones)
-                #
-                #         json_tuple["id"] = os.path.basename(filePath)
-                #
-                #         json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
-                #
-                #         json_tuple['moves'] = getMoves(moves, handicapStones)
-                #
-                #         json_tuple['rules'] = 'tromp-taylor'
-                #
-                #         json_tuple['komi'] = float(komi)
-                #
-                #         json_tuple['boardXSize'] = 13
-                #
-                #         json_tuple['boardYSize'] = 13
-                #
-                #         json_tuple['maxVisits'] = 6000
-                #
-                #         json_tuple['includeOwnership'] = True
-                #
-                #         json_tuple['analyzeTurns'] = analysisTurns
-                #         saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
-                # # good moves
                 if property == 'C':
                     comments = node.properties[property]
                     _comments = ''.join(comments)
                     if _comments.strip() != '':
-                        deleteFile(os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
+                        analysisTurns.clear()
+
+                        analysisTurns.append(len(moves) - handicapStones - 1)
+
+                        json_tuple["id"] = os.path.basename(filePath)
+
+                        json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
+
+                        json_tuple['moves'] = getMoves(moves, handicapStones)
+
+                        json_tuple['rules'] = 'tromp-taylor'
+
+                        json_tuple['komi'] = float(komi)
+
+                        json_tuple['boardXSize'] = 13
+
+                        json_tuple['boardYSize'] = 13
+
+                        json_tuple['maxVisits'] = 6000
+
+                        json_tuple['includeOwnership'] = True
+
+                        json_tuple['analyzeTurns'] = analysisTurns
+                        saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones - 1, handicapStones)
+
+                        analysisTurns.clear()
+                        analysisTurns.append(len(moves) - handicapStones)
+
+                        json_tuple["id"] = os.path.basename(filePath)
+
+                        json_tuple['initialStones'] = getInitialMoves(moves, handicapStones)
+
+                        json_tuple['moves'] = getMoves(moves, handicapStones)
+
+                        json_tuple['rules'] = 'tromp-taylor'
+
+                        json_tuple['komi'] = float(komi)
+
+                        json_tuple['boardXSize'] = 13
+
+                        json_tuple['boardYSize'] = 13
+
+                        json_tuple['maxVisits'] = 6000
+
+                        json_tuple['includeOwnership'] = True
+
+                        json_tuple['analyzeTurns'] = analysisTurns
+                        saveToFile(json.dumps(json_tuple), os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
+                # # # good moves
+                # if property == 'C':
+                #     comments = node.properties[property]
+                #     _comments = ''.join(comments)
+                #     if _comments.strip() != '':
+                #         deleteFile(os.path.basename(filePath), len(moves) - handicapStones, handicapStones)
 
         f.close()
         # print(len(moves)-handicapStones-1)

@@ -236,11 +236,12 @@ def setDiffInfo(name, anaText, filePath):
                                                  scoreLead_, scoreLead_ - scoreLead, dis1b, ownbefore, ownafter,
                                                  ownbefore - ownafter,trstbefore,trstafter,trstafter-trstbefore,dist01,dist02,dist21,dist0b,dist2b,bdec30,wdec30]
                     break
-
+count = 0
 for anaFile_ in os.listdir(anaFileRoot):
     if not os.path.isdir(anaFile_):
         with open(anaFileRoot + '/' + anaFile_, 'rt') as anafile:
             anaText = json.loads(anafile.read())
+            count += len(anaText)
             # print(anaText)
             nameWithType = os.path.basename(anaFile_)
             moveFileName = nameWithType[:-9]

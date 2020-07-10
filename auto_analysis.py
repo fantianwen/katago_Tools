@@ -161,8 +161,8 @@ enginne = GTPFacade("kata", KataGo)
 
 time.sleep(8)
 
-RootPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/dec_ana_good'
-RootAnaReportPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/ana_report_good'
+RootPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/dec_ana'
+RootAnaReportPath = '/home/ikeda-05444/users/fan/GoProjects/katago_Tools/ana_report'
 
 def saveAnaToFile(anaText, rootName, fileName):
     forsave = rootName + '/' + fileName + '.report'
