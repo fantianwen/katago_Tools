@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import division
 
 import json
 import pandas as pd
@@ -10,11 +11,12 @@ moveIndexes_low = 'abcdefghjklmn'
 
 count = 0
 
-anaFileRoot = '/home/fan/GoProjects/katago_Tools/ana_report'
+anaFileRoot = '/home/fan/GoProjects/katago_Tools/ana_report_good'
 # anaTestFile = '/home/radasm/GoProjects/katago_Tools/ana_report/Kat01_cho_0323_1.report'
 # anaPD = pd.DataFrame(columns=['name', 'move', 'wr', 'tr'])
 # anaPD.append(pd.Series(['222', '22', '11', '22'], index=anaPD.columns), ignore_index=True)
-anaPD_BA = pd.DataFrame(columns=['name', 'handi', 'move', 'shaperate', 'shapelog', 'wrbefore', 'wrafter', 'wrdiff', 'trbefore', 'trafter', 'trdiff', 'dist1b', 'ownbefore', 'ownafter', 'owndiff','trstbefore','trstafter','trstdiff','dist01','dist02','dist21','dist0b','dist2b','bdec30','wdec30'])
+anaPD_BA = pd.DataFrame(columns=['name', 'handi', 'move', 'shaperate', 'shapelog', 'wrbefore', 'wrafter', 'wrdiff', 'trbefore', 'trafter', 'trdiff', 'dist1b', 'ownbefore', 'ownafter', 'owndiff','trstbefore','trstafter','trstdiff','dist01','dist02','dist21','dist0b','dist2b','bdec30','wdec30',
+                                 'own2before', 'own2after','own2diff','bdecav','wdecav'])
 
 # def setInfo(name, anaText):
 #     for moveAnaReport in anaText:
@@ -109,6 +111,47 @@ def changeToKata(originalBlackMove):
     original_x_i = moveIndexes_low.index(original_x)
     return moveIndexes[original_x_i]+str(original_y)
 
+def getAverageOwnShip(ownerShipList, vertexs):
+    ownerShipTotal = 0
+    countO = 0
+
+    for vertex in vertexs:
+        vertexInKata = changeToKata(vertex)
+        vertexInKata_x = moveIndexes.index(vertexInKata[0])
+        vertexInKata_y = 13 - int(vertexInKata[1:])
+        ownerShipTotal += ownerShipList[vertexInKata_x * 13 + vertexInKata_y]
+        countO += 1
+    if countO > 0:
+        return ownerShipTotal / countO
+    else:
+        return 0
+
+
+def getAverageOwnShipOfOneMove(ownerShipList, vertexs, originalBlackMove):
+    original_x = originalBlackMove[0]
+    original_y = originalBlackMove[1:]
+    original_x_i = moveIndexes.index(original_x)+1
+    original_y_i = 13 - int(original_y)
+
+    start_i = original_x_i-3 if original_x_i > 3 else 1
+    end_i = original_x_i+3 if original_x_i < 11 else 13
+    start_j = original_y_i-3 if original_y_i > 3 else 1
+    end_j = original_y_i + 3 if original_y_i < 11 else 13
+
+    ownerShipTotal = 0
+    countO = 0
+
+    for vertex in vertexs:
+        vertexInKata = changeToKata(vertex)
+        vertexInKata_x = moveIndexes.index(vertexInKata[0])
+        vertexInKata_y = 13-int(vertexInKata[1:])
+        if start_i-1 <= vertexInKata_x < end_i and start_j-1 <= vertexInKata_y< end_j:
+            ownerShipTotal += ownerShipList[vertexInKata_x*13+vertexInKata_y]
+            countO += 1
+    if countO > 0:
+        return ownerShipTotal/countO
+    else:
+        return 0
 
 def setDiffInfo(name, anaText, filePath):
     handi = filePath[-8:-7]
@@ -130,7 +173,7 @@ def setDiffInfo(name, anaText, filePath):
             trstbefore = bestMoveInfo['scoreStdev']
             # get actual black move
             # filepath [search] (turnMove + 1)
-            originalFilePath = '/home/fan/GoProjects/katago_Tools/dec_ana'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
+            originalFilePath = '/home/fan/GoProjects/katago_Tools/dec_ana_good'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
             if os.path.exists(originalFilePath):
                 with open(originalFilePath, 'r') as moveInfomation:
                     move_json = json.loads(moveInfomation.read())
@@ -155,6 +198,7 @@ def setDiffInfo(name, anaText, filePath):
             originalKataMove = changeToKata(originalBlackMove[1])
 
             ownbefore = moveAnaReport['ownership'][getvertextNumber_upper(originalKataMove)]
+            own2before = getAverageOwnShipOfOneMove(moveAnaReport['ownership'], allTheMoves_B, originalKataMove)
 
             dis1b = calulateDistance(originalBlackMove[1], bestMoveInfo['move'])
 
@@ -174,7 +218,7 @@ def setDiffInfo(name, anaText, filePath):
                     move_json_fromGood = json.loads(moveInfomation.read())
                     nextWhiteMove = move_json_fromGood['moves'][move_json_fromGood['analyzeTurns'][0] - 1]
             else:
-                nextWhiteMove = ['B', 'pass']
+                nextWhiteMove = ['W', 'pass']
 
             dist02 = calulateDistance_low_low(lastWhiteMove[1], nextWhiteMove[1])
 
@@ -214,6 +258,7 @@ def setDiffInfo(name, anaText, filePath):
 
                     # move_ = bestMoveInfo_['move']
                     ownafter = moveAnaReport_['ownership'][getvertextNumber_upper(originalKataMove)]
+                    own2after = getAverageOwnShipOfOneMove(moveAnaReport_['ownership'], allTheMoves_B, originalKataMove)
                     for his_move in allTheMoves_B:
                         allTheTr_after.append(moveAnaReport_['ownership'][getvertextNumber_lower(his_move)])
 
@@ -231,11 +276,51 @@ def setDiffInfo(name, anaText, filePath):
                             if allTheTr_after[i]-allTheTr_before[i] < -0.3:
                                 wdec30 += 1
 
-                    anaPD_BA.loc[len(anaPD_BA)] = [name, handi, turnMove, shaperate, shapelog, winrate, winrate_,
-                                                 winrate_ - winrate, scoreLead,
-                                                 scoreLead_, scoreLead_ - scoreLead, dis1b, ownbefore, ownafter,
-                                                 ownbefore - ownafter,trstbefore,trstafter,trstafter-trstbefore,dist01,dist02,dist21,dist0b,dist2b,bdec30,wdec30]
-                    break
+                    allTheMoves_B.append(originalBlackMove[1])
+                    bdecav_before = getAverageOwnShip(moveAnaReport_['ownership'], allTheMoves_B)
+                    wdecav_before = getAverageOwnShip(moveAnaReport_['ownership'], allTheMoves_W)
+
+
+                    # break
+
+                    # next white Move
+                    founded = False
+                    bdecav = 0
+                    wdecav = 0
+                    for moveAnaReport_2 in anaText:
+                        turnMove_2 = moveAnaReport_2['turnNumber']
+                        if turnMove_2 == (turnMove + 2):
+                            founded = True
+                            bdecav_after = getAverageOwnShip(moveAnaReport_2['ownership'], allTheMoves_B)
+                            wdecav_after = getAverageOwnShip(moveAnaReport_2['ownership'], allTheMoves_W)
+                            bdecav = bdecav_after-bdecav_before
+                            wdecav = wdecav_after-wdecav_before
+                            break
+                    if not founded:
+                        newANA_fromGood = '/home/fan/GoProjects/katago_Tools/ana_report' + '/' + filePath[
+                                                                                                      :-7] + ".report"
+                        with open(newANA_fromGood, 'rt') as anaGood:
+                            anaTextAnother = json.loads(anaGood.read())
+                            for anaInfo in anaTextAnother:
+                                turnMove_another = anaInfo['turnNumber']
+                                if turnMove_another == (turnMove + 2):
+                                    bdecav_after = getAverageOwnShip(moveAnaReport_2['ownership'], allTheMoves_B)
+                                    wdecav_after = getAverageOwnShip(moveAnaReport_2['ownership'], allTheMoves_W)
+                                    bdecav = bdecav_after - bdecav_before
+                                    wdecav = wdecav_after - wdecav_before
+
+                    anaPD_BA.loc[len(anaPD_BA)] = [name, handi, turnMove, shaperate, shapelog, winrate,
+                                                   winrate_,
+                                                   winrate_ - winrate, scoreLead,
+                                                   scoreLead_, scoreLead_ - scoreLead, dis1b, ownbefore,
+                                                   ownafter,
+                                                   ownbefore - ownafter, trstbefore, trstafter,
+                                                   trstafter - trstbefore, dist01, dist02, dist21, dist0b,
+                                                   dist2b, bdec30, wdec30, own2before, own2after, ownafter - own2before,
+                                                   bdecav, wdecav]
+
+
+
 count = 0
 for anaFile_ in os.listdir(anaFileRoot):
     if not os.path.isdir(anaFile_):
@@ -253,4 +338,4 @@ for anaFile_ in os.listdir(anaFileRoot):
 
 print(count)
 # anaPD.to_csv('testAnaExcel.csv')
-# anaPD_BA.to_csv('testAnaGoodDiff_3.csv')
+anaPD_BA.to_csv('testAnaGoodDiff_3.csv')
