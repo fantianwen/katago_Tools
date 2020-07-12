@@ -19,7 +19,7 @@ marked = ['BIBIRI', 'KATACHI', 'CHIISAI', 'SOPPO', 'OTUKIAI', 'AJIKESHI', 'IKKI'
 #
 
 oldBadData = pd.read_csv('04071348bad.csv')
-andBadData = pd.read_csv('testAnaBadDiff_new_new.csv')
+andBadData = pd.read_csv('testAnaBadDiff_3.csv')
 
 count = 0
 labels = []
@@ -46,7 +46,7 @@ for index, row in andBadData.iterrows():
         labels.append('not found')
 
 andBadData['label'] = labels
-andBadData.to_csv('badDataWithLabel_encoded_new.csv')
+andBadData.to_csv('badDataWithLabel_encoded_new_3.csv')
 # print(count)
 # print(labelsForPrint)
 
