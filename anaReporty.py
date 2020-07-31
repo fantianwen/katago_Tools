@@ -11,7 +11,7 @@ moveIndexes_low = 'abcdefghjklmn'
 
 count = 0
 
-anaFileRoot = '/home/fan/GoProjects/katago_Tools/ana_report'
+anaFileRoot = '/home/fan/GoProjects/katago_Tools/validation_report'
 # anaTestFile = '/home/radasm/GoProjects/katago_Tools/ana_report/Kat01_cho_0323_1.report'
 # anaPD = pd.DataFrame(columns=['name', 'move', 'wr', 'tr'])
 # anaPD.append(pd.Series(['222', '22', '11', '22'], index=anaPD.columns), ignore_index=True)
@@ -164,7 +164,7 @@ def setDiffInfo(name, anaText, filePath):
             trstbefore = bestMoveInfo['scoreStdev']
             # get actual black move
             # filepath [search] (turnMove + 1)
-            originalFilePath = '/home/fan/GoProjects/katago_Tools/dec_ana'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
+            originalFilePath = '/home/fan/GoProjects/katago_Tools/validation'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
             if os.path.exists(originalFilePath):
                 with open(originalFilePath, 'r') as moveInfomation:
                     move_json = json.loads(moveInfomation.read())
@@ -197,8 +197,8 @@ def setDiffInfo(name, anaText, filePath):
             dist01 = calulateDistance_low_low(originalBlackMove[1], lastWhiteMove[1])
 
             # dist02
-            nextFilePath_fromBad = '/home/fan/GoProjects/katago_Tools/dec_ana'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
-            nextFilePath_fromGood = '/home/fan/GoProjects/katago_Tools/dec_ana_good'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
+            nextFilePath_fromBad = '/home/fan/GoProjects/katago_Tools/validation_report'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
+            nextFilePath_fromGood = '/home/fan/GoProjects/katago_Tools/validation_report'+'/'+filePath[:-7]+"/"+filePath[:-7]+"_"+str(turnMove+1)+".ana"
 
             if os.path.exists(nextFilePath_fromBad):
                 with open(nextFilePath_fromBad, 'r') as moveInfomation:
@@ -288,7 +288,7 @@ def setDiffInfo(name, anaText, filePath):
                             wdecav = wdecav_after-wdecav_before
                             break
                     if not founded:
-                        newANA_fromGood = '/home/fan/GoProjects/katago_Tools/ana_report_good' + '/' + filePath[
+                        newANA_fromGood = '/home/fan/GoProjects/katago_Tools/validation_report' + '/' + filePath[
                                                                                                       :-7] + ".report"
                         with open(newANA_fromGood, 'rt') as anaGood:
                             anaTextAnother = json.loads(anaGood.read())
@@ -329,4 +329,4 @@ for anaFile_ in os.listdir(anaFileRoot):
 
 print(count)
 # anaPD.to_csv('testAnaExcel.csv')
-anaPD_BA.to_csv('testAnaBadDiff_3.csv')
+anaPD_BA.to_csv('testAnaBadDiff_validation.csv')
